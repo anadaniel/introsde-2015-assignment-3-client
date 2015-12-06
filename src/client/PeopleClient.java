@@ -19,6 +19,13 @@ public class PeopleClient{
     for(Person person : pList){
       printPersonDetails(person);
     }
+
+    // Method #2
+    System.out.println(">>>>> Method #2: readPerson(Long id) <<<<<");
+    Person person = people.readPerson(1);
+    printPersonDetails(person);
+
+    
   }
 
   public static void printPersonDetails(Person person) {
