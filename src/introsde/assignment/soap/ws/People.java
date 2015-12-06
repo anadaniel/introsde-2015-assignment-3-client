@@ -52,4 +52,22 @@ public interface People {
         @WebParam(name = "personId", targetNamespace = "")
         int personId);
 
+    /**
+     * 
+     * @param person
+     * @param personId
+     * @return
+     *     returns introsde.assignment.soap.ws.Person
+     */
+    @WebMethod
+    @WebResult(name = "updatedPerson", targetNamespace = "")
+    @RequestWrapper(localName = "updatePerson", targetNamespace = "http://ws.soap.assignment.introsde/", className = "introsde.assignment.soap.ws.UpdatePerson")
+    @ResponseWrapper(localName = "updatePersonResponse", targetNamespace = "http://ws.soap.assignment.introsde/", className = "introsde.assignment.soap.ws.UpdatePersonResponse")
+    @Action(input = "http://ws.soap.assignment.introsde/People/updatePersonRequest", output = "http://ws.soap.assignment.introsde/People/updatePersonResponse")
+    public Person updatePerson(
+        @WebParam(name = "personId", targetNamespace = "")
+        int personId,
+        @WebParam(name = "person", targetNamespace = "")
+        Person person);
+
 }

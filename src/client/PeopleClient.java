@@ -21,11 +21,16 @@ public class PeopleClient{
     }
 
     // Method #2
-    System.out.println(">>>>> Method #2: readPerson(Long id) <<<<<");
+    System.out.println(">>>>> Method #2: readPerson(1) <<<<<");
     Person person = people.readPerson(1);
     printPersonDetails(person);
 
-    
+    // Method #3
+    System.out.println(">>>>> Method #3: updatePerson(1) <<<<<");
+    Person editedPerson = new Person();
+    editedPerson.setFirstname("Ana Soap");
+    Person updatedPerson = people.updatePerson(1, editedPerson);
+    printPersonDetails(updatedPerson);
   }
 
   public static void printPersonDetails(Person person) {
