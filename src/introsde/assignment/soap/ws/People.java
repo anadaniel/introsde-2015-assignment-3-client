@@ -127,4 +127,19 @@ public interface People {
     @Action(input = "http://ws.soap.assignment.introsde/People/getMeasureTypesRequest", output = "http://ws.soap.assignment.introsde/People/getMeasureTypesResponse")
     public List<String> getMeasureTypes();
 
+    /**
+     * 
+     * @param measureId
+     * @return
+     *     returns introsde.assignment.soap.ws.Measure
+     */
+    @WebMethod
+    @WebResult(name = "measure", targetNamespace = "")
+    @RequestWrapper(localName = "getMeasure", targetNamespace = "http://ws.soap.assignment.introsde/", className = "introsde.assignment.soap.ws.GetMeasure")
+    @ResponseWrapper(localName = "getMeasureResponse", targetNamespace = "http://ws.soap.assignment.introsde/", className = "introsde.assignment.soap.ws.GetMeasureResponse")
+    @Action(input = "http://ws.soap.assignment.introsde/People/getMeasureRequest", output = "http://ws.soap.assignment.introsde/People/getMeasureResponse")
+    public Measure getMeasure(
+        @WebParam(name = "measureId", targetNamespace = "")
+        int measureId);
+
 }

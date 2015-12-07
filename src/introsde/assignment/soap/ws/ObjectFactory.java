@@ -26,6 +26,7 @@ public class ObjectFactory {
 
     private final static QName _GetPersonHistory_QNAME = new QName("http://ws.soap.assignment.introsde/", "getPersonHistory");
     private final static QName _CreatePerson_QNAME = new QName("http://ws.soap.assignment.introsde/", "createPerson");
+    private final static QName _GetMeasureResponse_QNAME = new QName("http://ws.soap.assignment.introsde/", "getMeasureResponse");
     private final static QName _DeletePerson_QNAME = new QName("http://ws.soap.assignment.introsde/", "deletePerson");
     private final static QName _CreatePersonResponse_QNAME = new QName("http://ws.soap.assignment.introsde/", "createPersonResponse");
     private final static QName _GetPeopleList_QNAME = new QName("http://ws.soap.assignment.introsde/", "getPeopleList");
@@ -36,6 +37,7 @@ public class ObjectFactory {
     private final static QName _GetPeopleListResponse_QNAME = new QName("http://ws.soap.assignment.introsde/", "getPeopleListResponse");
     private final static QName _GetMeasureTypes_QNAME = new QName("http://ws.soap.assignment.introsde/", "getMeasureTypes");
     private final static QName _DeletePersonResponse_QNAME = new QName("http://ws.soap.assignment.introsde/", "deletePersonResponse");
+    private final static QName _GetMeasure_QNAME = new QName("http://ws.soap.assignment.introsde/", "getMeasure");
     private final static QName _ReadPersonResponse_QNAME = new QName("http://ws.soap.assignment.introsde/", "readPersonResponse");
     private final static QName _UpdatePersonResponse_QNAME = new QName("http://ws.soap.assignment.introsde/", "updatePersonResponse");
 
@@ -71,6 +73,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetMeasureResponse }
+     * 
+     */
+    public GetMeasureResponse createGetMeasureResponse() {
+        return new GetMeasureResponse();
+    }
+
+    /**
      * Create an instance of {@link CreatePerson }
      * 
      */
@@ -100,6 +110,14 @@ public class ObjectFactory {
      */
     public DeletePersonResponse createDeletePersonResponse() {
         return new DeletePersonResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetMeasure }
+     * 
+     */
+    public GetMeasure createGetMeasure() {
+        return new GetMeasure();
     }
 
     /**
@@ -201,6 +219,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetMeasureResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.soap.assignment.introsde/", name = "getMeasureResponse")
+    public JAXBElement<GetMeasureResponse> createGetMeasureResponse(GetMeasureResponse value) {
+        return new JAXBElement<GetMeasureResponse>(_GetMeasureResponse_QNAME, GetMeasureResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link DeletePerson }{@code >}}
      * 
      */
@@ -288,6 +315,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://ws.soap.assignment.introsde/", name = "deletePersonResponse")
     public JAXBElement<DeletePersonResponse> createDeletePersonResponse(DeletePersonResponse value) {
         return new JAXBElement<DeletePersonResponse>(_DeletePersonResponse_QNAME, DeletePersonResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetMeasure }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.soap.assignment.introsde/", name = "getMeasure")
+    public JAXBElement<GetMeasure> createGetMeasure(GetMeasure value) {
+        return new JAXBElement<GetMeasure>(_GetMeasure_QNAME, GetMeasure.class, null, value);
     }
 
     /**

@@ -77,12 +77,22 @@ public class PeopleClient{
       System.out.println();
     }
 
+    // Save a measure Id
+    int measureId = personMeasures.get(0).getMid();
+
     // Method #7
     System.out.println(">>>>> Method #7: getMeasureTypes() <<<<<");
     List<String> measureTypes = people.getMeasureTypes();
     for( String measureType : measureTypes ){
       System.out.println(">> " + measureType);
     }
+    System.out.println();
+
+    // Method #8
+    System.out.println(">>>>> Method #8: getMeasure(" + measureId + ") <<<<<");
+    Measure measure = people.getMeasure(measureId);
+    printMeasure(measure);
+
   }
 
   public static void printPersonDetails(Person person) {
