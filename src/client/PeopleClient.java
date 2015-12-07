@@ -29,7 +29,7 @@ public class PeopleClient{
     printPersonDetails(person);
 
     // Method #3
-    System.out.println(">>>>> Method #3: updatePerson(int personId, Person person) <<<<<");
+    System.out.println(">>>>> Method #3: updatePerson(1, Person person) <<<<<");
     Person editedPerson = new Person();
     editedPerson.setFirstname("Ana Soap");
     Person updatedPerson = people.updatePerson(1, editedPerson);
@@ -67,6 +67,13 @@ public class PeopleClient{
     // Method #5
     System.out.println(">>>>> Method #5: deletePerson(" + createdPerson.getPersonId()  + ") <<<<<");
     people.deletePerson(createdPerson.getPersonId());
+
+    // Method #6
+    System.out.println(">>>>> Method #6: getPersonHistory(1, 'height') <<<<<");
+    List<Measure> personMeasures = people.getPersonHistory(1, "height");
+    for( Measure measure : personMeasures ){
+      printMeasure(measure);
+    }
   }
 
   public static void printPersonDetails(Person person) {
@@ -79,9 +86,13 @@ public class PeopleClient{
     System.out.println();
   }
 
-  public static void printHealthProfile(Person.HealthProfile healthProfile){
+  public static void printHealthProfile(Person.HealthProfile healthProfile) {
     for(Measure measure : healthProfile.getMeasure()){
-      System.out.println(">> mid: " + measure.getMid() + " | " + measure.getMeasureName() + " = " + measure.getValue() );
+      printMeasure(measure);
     }
+  }
+
+  public static void printMeasure(Measure measure) {
+    System.out.println(">> mid: " + measure.getMid() + " | " + measure.getMeasureName() + " = " + measure.getValue() );
   }
 }

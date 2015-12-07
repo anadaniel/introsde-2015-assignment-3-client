@@ -97,4 +97,22 @@ public interface People {
         @WebParam(name = "personId", targetNamespace = "")
         int personId);
 
+    /**
+     * 
+     * @param personId
+     * @param measureType
+     * @return
+     *     returns java.util.List<introsde.assignment.soap.ws.Measure>
+     */
+    @WebMethod
+    @WebResult(name = "measures", targetNamespace = "")
+    @RequestWrapper(localName = "getPersonHistory", targetNamespace = "http://ws.soap.assignment.introsde/", className = "introsde.assignment.soap.ws.GetPersonHistory")
+    @ResponseWrapper(localName = "getPersonHistoryResponse", targetNamespace = "http://ws.soap.assignment.introsde/", className = "introsde.assignment.soap.ws.GetPersonHistoryResponse")
+    @Action(input = "http://ws.soap.assignment.introsde/People/getPersonHistoryRequest", output = "http://ws.soap.assignment.introsde/People/getPersonHistoryResponse")
+    public List<Measure> getPersonHistory(
+        @WebParam(name = "personId", targetNamespace = "")
+        int personId,
+        @WebParam(name = "measureType", targetNamespace = "")
+        String measureType);
+
 }
