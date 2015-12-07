@@ -1,6 +1,7 @@
 package client;
 
 import java.util.List;
+import java.io.PrintWriter;
 import java.util.GregorianCalendar;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
@@ -11,32 +12,39 @@ import introsde.assignment.soap.ws.Person;
 import introsde.assignment.soap.ws.Measure;
 
 public class PeopleClient{
+  private static PrintWriter logWriter;
+
   public static void main(String[] args) throws Exception {
 
     PeopleService service = new PeopleService();
     People people = service.getPeopleImplPort();
+    logWriter = new PrintWriter("client.log", "UTF-8");
+
+    logWriter.println("====================== SERVER WSDL URL ======================");
+    logWriter.println("https://anadaniel-introsde-a03.herokuapp.com/ws/people?wsdl");
+    logWriter.println();
 
     // Method #1
-    System.out.println(">>>>> Method #1: readPersonList() <<<<<");
+    logWriter.println(">>>>> Method #1: readPersonList() <<<<<");
     List<Person> pList = people.getPeopleList();
     for(Person person : pList){
       printPersonDetails(person);
     }
 
     // Method #2
-    System.out.println(">>>>> Method #2: readPerson(1) <<<<<");
+    logWriter.println(">>>>> Method #2: readPerson(1) <<<<<");
     Person person = people.readPerson(1);
     printPersonDetails(person);
 
     // Method #3
-    System.out.println(">>>>> Method #3: updatePerson(1, person) <<<<<");
+    logWriter.println(">>>>> Method #3: updatePerson(1, person) <<<<<");
     Person editedPerson = new Person();
     editedPerson.setFirstname("Ana Soap");
     Person updatedPerson = people.updatePerson(1, editedPerson);
     printPersonDetails(updatedPerson);
 
     // Method #4
-    System.out.println(">>>>> Method #4: createPerson(person) <<<<<");
+    logWriter.println(">>>>> Method #4: createPerson(person) <<<<<");
 
     // Create new Person object
     Person newPerson = new Person();
@@ -65,59 +73,69 @@ public class PeopleClient{
     printPersonDetails(createdPerson);
 
     // Method #5
-    System.out.println(">>>>> Method #5: deletePerson(" + createdPerson.getPersonId()  + ") <<<<<");
+    logWriter.println(">>>>> Method #5: deletePerson(" + createdPerson.getPersonId()  + ") <<<<<");
     people.deletePerson(createdPerson.getPersonId());
-    System.out.println();
+    logWriter.println();
 
     // Method #6
-    System.out.println(">>>>> Method #6: getPersonHistory(1, 'height') <<<<<");
+    logWriter.println(">>>>> Method #6: getPersonHistory(1, 'height') <<<<<");
     List<Measure> personMeasures = people.getPersonHistory(1, "height");
-    for( Measure measure : personMeasures ){
-      printMeasure(measure);
-      System.out.println();
+    for( Measure m : personMeasures ){
+      printMeasure(m);
+      logWriter.println();
     }
 
     // Save a measure Id
     int measureId = personMeasures.get(0).getMid();
 
     // Method #7
-    System.out.println(">>>>> Method #7: getMeasureTypes() <<<<<");
+    logWriter.println(">>>>> Method #7: getMeasureTypes() <<<<<");
     List<String> measureTypes = people.getMeasureTypes();
     for( String measureType : measureTypes ){
-      System.out.println(">> " + measureType);
+      logWriter.println(">> " + measureType);
     }
-    System.out.println();
+    logWriter.println();
 
     // Method #8
-    System.out.println(">>>>> Method #8: getMeasure(" + measureId + ") <<<<<");
+    logWriter.println(">>>>> Method #8: getMeasure(" + measureId + ") <<<<<");
     Measure measure = people.getMeasure(measureId);
     printMeasure(measure);
-    System.out.println();
+    logWriter.println();
 
     // Method #9
-    System.out.println(">>>>> Method #9: createMeasure(measure, 1, weight) <<<<<");
+    logWriter.println(">>>>> Method #9: createMeasure(measure, 1, weight) <<<<<");
     Measure newMeasure = new Measure();
     newMeasure.setValue("58");
     Measure createdMeasure = people.createMeasure(newMeasure, 1, "weight");
     printMeasure(createdMeasure);
-    System.out.println();
+    logWriter.println();
 
     // Method #10
-    System.out.println(">>>>> Method #10: updateMeasure(" + createdMeasure.getMid() + ", measure) <<<<<");
+    logWriter.println(">>>>> Method #10: updateMeasure(" + createdMeasure.getMid() + ", measure) <<<<<");
     createdMeasure.setValue("59");
     Measure updatedMeasure = people.updateMeasure(createdMeasure.getMid(), createdMeasure);
     printMeasure(updatedMeasure);
+    logWriter.println();
 
+    // Method #6
+    logWriter.println(">>>>> Method #6: getPersonHistory(1, 'weight') <<<<<");
+    personMeasures = people.getPersonHistory(1, "weight");
+    for( Measure m : personMeasures ){
+      printMeasure(m);
+      logWriter.println();
+    }
+
+    logWriter.close();
   }
 
   public static void printPersonDetails(Person person) {
-    System.out.println("Person with id: " + person.getPersonId());
-    System.out.println("> Firstname: " + person.getFirstname());
-    System.out.println("> Lastname: " + person.getLastname());
-    System.out.println("> Birthdate: " + person.getBirthdate());
-    System.out.println("> HealthProfile: ");
+    logWriter.println("Person with id: " + person.getPersonId());
+    logWriter.println("> Firstname: " + person.getFirstname());
+    logWriter.println("> Lastname: " + person.getLastname());
+    logWriter.println("> Birthdate: " + person.getBirthdate());
+    logWriter.println("> HealthProfile: ");
     printHealthProfile(person.getHealthProfile());
-    System.out.println();
+    logWriter.println();
   }
 
   public static void printHealthProfile(Person.HealthProfile healthProfile) {
@@ -127,6 +145,6 @@ public class PeopleClient{
   }
 
   public static void printMeasure(Measure measure) {
-    System.out.println(">> mid: " + measure.getMid() + " | " + measure.getMeasureName() + " = " + measure.getValue() );
+    logWriter.println(">> mid: " + measure.getMid() + " | " + measure.getMeasureName() + " = " + measure.getValue() );
   }
 }
