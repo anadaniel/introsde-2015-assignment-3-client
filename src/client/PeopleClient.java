@@ -1,6 +1,9 @@
 package client;
 
 import java.util.List;
+import java.util.GregorianCalendar;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 import introsde.assignment.soap.ws.PeopleService;
 import introsde.assignment.soap.ws.People;
@@ -26,11 +29,40 @@ public class PeopleClient{
     printPersonDetails(person);
 
     // Method #3
-    System.out.println(">>>>> Method #3: updatePerson(1) <<<<<");
+    System.out.println(">>>>> Method #3: updatePerson(int personId, Person person) <<<<<");
     Person editedPerson = new Person();
     editedPerson.setFirstname("Ana Soap");
     Person updatedPerson = people.updatePerson(1, editedPerson);
     printPersonDetails(updatedPerson);
+
+    // Method #4
+    System.out.println(">>>>> Method #4: createPerson(Person person) <<<<<");
+
+    // Create new Person object
+    Person newPerson = new Person();
+    newPerson.setFirstname("Newie");
+    newPerson.setLastname("Peep");
+
+    GregorianCalendar c = new GregorianCalendar(1990,01,01);
+    XMLGregorianCalendar gregorianBirthdate = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
+    newPerson.setBirthdate(gregorianBirthdate);
+
+    // Create measures
+    Measure m1 = new Measure();
+    m1.setMeasureName("height");
+    m1.setValue("180");
+    Measure m2 = new Measure();
+    m2.setMeasureName("weight");
+    m2.setValue("80");
+
+    // Set measures to healthprofile
+    Person.HealthProfile hp = new Person.HealthProfile();
+    hp.getMeasure().add(m1);
+    hp.getMeasure().add(m2);
+    newPerson.setHealthProfile(hp);
+
+    Person createdPerson = people.createPerson(newPerson);
+    printPersonDetails(createdPerson);
   }
 
   public static void printPersonDetails(Person person) {

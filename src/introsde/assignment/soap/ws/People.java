@@ -70,4 +70,19 @@ public interface People {
         @WebParam(name = "person", targetNamespace = "")
         Person person);
 
+    /**
+     * 
+     * @param person
+     * @return
+     *     returns introsde.assignment.soap.ws.Person
+     */
+    @WebMethod
+    @WebResult(name = "createdPerson", targetNamespace = "")
+    @RequestWrapper(localName = "createPerson", targetNamespace = "http://ws.soap.assignment.introsde/", className = "introsde.assignment.soap.ws.CreatePerson")
+    @ResponseWrapper(localName = "createPersonResponse", targetNamespace = "http://ws.soap.assignment.introsde/", className = "introsde.assignment.soap.ws.CreatePersonResponse")
+    @Action(input = "http://ws.soap.assignment.introsde/People/createPersonRequest", output = "http://ws.soap.assignment.introsde/People/createPersonResponse")
+    public Person createPerson(
+        @WebParam(name = "person", targetNamespace = "")
+        Person person);
+
 }
