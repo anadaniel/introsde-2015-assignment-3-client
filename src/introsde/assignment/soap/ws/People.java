@@ -115,4 +115,16 @@ public interface People {
         @WebParam(name = "measureType", targetNamespace = "")
         String measureType);
 
+    /**
+     * 
+     * @return
+     *     returns java.util.List<java.lang.String>
+     */
+    @WebMethod
+    @WebResult(name = "measureTypes", targetNamespace = "")
+    @RequestWrapper(localName = "getMeasureTypes", targetNamespace = "http://ws.soap.assignment.introsde/", className = "introsde.assignment.soap.ws.GetMeasureTypes")
+    @ResponseWrapper(localName = "getMeasureTypesResponse", targetNamespace = "http://ws.soap.assignment.introsde/", className = "introsde.assignment.soap.ws.GetMeasureTypesResponse")
+    @Action(input = "http://ws.soap.assignment.introsde/People/getMeasureTypesRequest", output = "http://ws.soap.assignment.introsde/People/getMeasureTypesResponse")
+    public List<String> getMeasureTypes();
+
 }

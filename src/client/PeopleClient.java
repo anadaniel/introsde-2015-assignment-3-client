@@ -67,12 +67,21 @@ public class PeopleClient{
     // Method #5
     System.out.println(">>>>> Method #5: deletePerson(" + createdPerson.getPersonId()  + ") <<<<<");
     people.deletePerson(createdPerson.getPersonId());
+    System.out.println();
 
     // Method #6
     System.out.println(">>>>> Method #6: getPersonHistory(1, 'height') <<<<<");
     List<Measure> personMeasures = people.getPersonHistory(1, "height");
     for( Measure measure : personMeasures ){
       printMeasure(measure);
+      System.out.println();
+    }
+
+    // Method #7
+    System.out.println(">>>>> Method #7: getMeasureTypes() <<<<<");
+    List<String> measureTypes = people.getMeasureTypes();
+    for( String measureType : measureTypes ){
+      System.out.println(">> " + measureType);
     }
   }
 
