@@ -32,7 +32,9 @@ public class ObjectFactory {
     private final static QName _GetPeopleList_QNAME = new QName("http://ws.soap.assignment.introsde/", "getPeopleList");
     private final static QName _GetMeasureTypesResponse_QNAME = new QName("http://ws.soap.assignment.introsde/", "getMeasureTypesResponse");
     private final static QName _UpdatePerson_QNAME = new QName("http://ws.soap.assignment.introsde/", "updatePerson");
+    private final static QName _UpdateMeasureResponse_QNAME = new QName("http://ws.soap.assignment.introsde/", "updateMeasureResponse");
     private final static QName _ReadPerson_QNAME = new QName("http://ws.soap.assignment.introsde/", "readPerson");
+    private final static QName _UpdateMeasure_QNAME = new QName("http://ws.soap.assignment.introsde/", "updateMeasure");
     private final static QName _GetPersonHistoryResponse_QNAME = new QName("http://ws.soap.assignment.introsde/", "getPersonHistoryResponse");
     private final static QName _GetPeopleListResponse_QNAME = new QName("http://ws.soap.assignment.introsde/", "getPeopleListResponse");
     private final static QName _GetMeasureTypes_QNAME = new QName("http://ws.soap.assignment.introsde/", "getMeasureTypes");
@@ -153,11 +155,27 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link UpdateMeasure }
+     * 
+     */
+    public UpdateMeasure createUpdateMeasure() {
+        return new UpdateMeasure();
+    }
+
+    /**
      * Create an instance of {@link GetPersonHistoryResponse }
      * 
      */
     public GetPersonHistoryResponse createGetPersonHistoryResponse() {
         return new GetPersonHistoryResponse();
+    }
+
+    /**
+     * Create an instance of {@link UpdateMeasureResponse }
+     * 
+     */
+    public UpdateMeasureResponse createUpdateMeasureResponse() {
+        return new UpdateMeasureResponse();
     }
 
     /**
@@ -273,12 +291,30 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link UpdateMeasureResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.soap.assignment.introsde/", name = "updateMeasureResponse")
+    public JAXBElement<UpdateMeasureResponse> createUpdateMeasureResponse(UpdateMeasureResponse value) {
+        return new JAXBElement<UpdateMeasureResponse>(_UpdateMeasureResponse_QNAME, UpdateMeasureResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link ReadPerson }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://ws.soap.assignment.introsde/", name = "readPerson")
     public JAXBElement<ReadPerson> createReadPerson(ReadPerson value) {
         return new JAXBElement<ReadPerson>(_ReadPerson_QNAME, ReadPerson.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link UpdateMeasure }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.soap.assignment.introsde/", name = "updateMeasure")
+    public JAXBElement<UpdateMeasure> createUpdateMeasure(UpdateMeasure value) {
+        return new JAXBElement<UpdateMeasure>(_UpdateMeasure_QNAME, UpdateMeasure.class, null, value);
     }
 
     /**

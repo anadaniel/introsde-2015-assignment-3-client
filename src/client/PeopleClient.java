@@ -29,14 +29,14 @@ public class PeopleClient{
     printPersonDetails(person);
 
     // Method #3
-    System.out.println(">>>>> Method #3: updatePerson(1, Person person) <<<<<");
+    System.out.println(">>>>> Method #3: updatePerson(1, person) <<<<<");
     Person editedPerson = new Person();
     editedPerson.setFirstname("Ana Soap");
     Person updatedPerson = people.updatePerson(1, editedPerson);
     printPersonDetails(updatedPerson);
 
     // Method #4
-    System.out.println(">>>>> Method #4: createPerson(Person person) <<<<<");
+    System.out.println(">>>>> Method #4: createPerson(person) <<<<<");
 
     // Create new Person object
     Person newPerson = new Person();
@@ -92,6 +92,13 @@ public class PeopleClient{
     System.out.println(">>>>> Method #8: getMeasure(" + measureId + ") <<<<<");
     Measure measure = people.getMeasure(measureId);
     printMeasure(measure);
+    System.out.println();
+
+    // Method #9
+    System.out.println(">>>>> Method #9: updateMeasure(" + measureId + ", measure) <<<<<");
+    measure.setValue("123");
+    Measure updatedMeasure = people.updateMeasure(measure.getMid(), measure);
+    printMeasure(updatedMeasure);
 
   }
 
