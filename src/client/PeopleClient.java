@@ -63,6 +63,10 @@ public class PeopleClient{
 
     Person createdPerson = people.createPerson(newPerson);
     printPersonDetails(createdPerson);
+
+    // Method #5
+    System.out.println(">>>>> Method #5: deletePerson(" + createdPerson.getPersonId()  + ") <<<<<");
+    people.deletePerson(createdPerson.getPersonId());
   }
 
   public static void printPersonDetails(Person person) {

@@ -85,4 +85,16 @@ public interface People {
         @WebParam(name = "person", targetNamespace = "")
         Person person);
 
+    /**
+     * 
+     * @param personId
+     */
+    @WebMethod
+    @RequestWrapper(localName = "deletePerson", targetNamespace = "http://ws.soap.assignment.introsde/", className = "introsde.assignment.soap.ws.DeletePerson")
+    @ResponseWrapper(localName = "deletePersonResponse", targetNamespace = "http://ws.soap.assignment.introsde/", className = "introsde.assignment.soap.ws.DeletePersonResponse")
+    @Action(input = "http://ws.soap.assignment.introsde/People/deletePersonRequest", output = "http://ws.soap.assignment.introsde/People/deletePersonResponse")
+    public void deletePerson(
+        @WebParam(name = "personId", targetNamespace = "")
+        int personId);
+
 }
