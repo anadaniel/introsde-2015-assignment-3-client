@@ -95,9 +95,17 @@ public class PeopleClient{
     System.out.println();
 
     // Method #9
-    System.out.println(">>>>> Method #9: updateMeasure(" + measureId + ", measure) <<<<<");
-    measure.setValue("123");
-    Measure updatedMeasure = people.updateMeasure(measure.getMid(), measure);
+    System.out.println(">>>>> Method #9: createMeasure(measure, 1, weight) <<<<<");
+    Measure newMeasure = new Measure();
+    newMeasure.setValue("58");
+    Measure createdMeasure = people.createMeasure(newMeasure, 1, "weight");
+    printMeasure(createdMeasure);
+    System.out.println();
+
+    // Method #10
+    System.out.println(">>>>> Method #10: updateMeasure(" + createdMeasure.getMid() + ", measure) <<<<<");
+    createdMeasure.setValue("59");
+    Measure updatedMeasure = people.updateMeasure(createdMeasure.getMid(), createdMeasure);
     printMeasure(updatedMeasure);
 
   }

@@ -144,6 +144,27 @@ public interface People {
 
     /**
      * 
+     * @param measure
+     * @param personId
+     * @param measureType
+     * @return
+     *     returns introsde.assignment.soap.ws.Measure
+     */
+    @WebMethod
+    @WebResult(name = "createMeasure", targetNamespace = "")
+    @RequestWrapper(localName = "createMeasure", targetNamespace = "http://ws.soap.assignment.introsde/", className = "introsde.assignment.soap.ws.CreateMeasure")
+    @ResponseWrapper(localName = "createMeasureResponse", targetNamespace = "http://ws.soap.assignment.introsde/", className = "introsde.assignment.soap.ws.CreateMeasureResponse")
+    @Action(input = "http://ws.soap.assignment.introsde/People/createMeasureRequest", output = "http://ws.soap.assignment.introsde/People/createMeasureResponse")
+    public Measure createMeasure(
+        @WebParam(name = "measure", targetNamespace = "")
+        Measure measure,
+        @WebParam(name = "personId", targetNamespace = "")
+        int personId,
+        @WebParam(name = "measureType", targetNamespace = "")
+        String measureType);
+
+    /**
+     * 
      * @param measureId
      * @param measure
      * @return
